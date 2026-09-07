@@ -88,10 +88,15 @@ if __name__ == '__main__':
     app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("check_gold", check_gold))
-    app.add_handler(CommandHandler("status", status))
-    
-    loop = asyncio.get_event_loop()
-    loop.create_task(auto_loop(app))
-    
-    print("Bot is running...")
-    app.run_polling()
+    app.add_handler(CommandHandler("status", status  
+        import asyncio
+
+if __name__ == '__main__':
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        
+    app.run_polling()  # እዚህ ጋር እንደ ኮድህ አጻጻፍ (application.run_polling() ከሆነ እሱን አድርገው)
+                           
