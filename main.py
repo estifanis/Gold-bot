@@ -15,8 +15,7 @@ def run_flask():
     port = int(os.environ.get("PORT", 8080))
     web_app.run(host='0.0.0.0', port=port)
 
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-
+TELEGRAM_BOT_TOKEN = "8969181755:AAFJh5HVlmcM5sqOgPPo8b5lDecWRKz8Rv8"token here.
 async def start(update, context):
     await update.message.reply_text("Bot is active!")
 
