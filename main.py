@@ -95,4 +95,5 @@ def main():
 
 if __name__ == '__main__':
     Thread(target=run_flask, daemon=True).start()
-    main()
+    main() this bot is cleaver assistant no other ads no ristriction for example .to use you must join channel etc 
+      ማርያም ማርያም ማርያም
