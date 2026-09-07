@@ -86,18 +86,12 @@ async def auto_loop(app):
 
  if __name__ == '__main__':
     import asyncio
-    
-     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
-     app.add_handler(CommandHandler("start", start))
-     app.add_handler(CommandHandler("check_gold", check_gold))
-     app.add_handler(CommandHandler("status", status))
-
-    try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-
-      loop.create_task(auto_loop(app))
-      print("Bot is running...")
-      app.run_polling()
+    app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("check_gold", check_gold))
+    app.add_handler(CommandHandler("status", status))
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.create_task(auto_loop(app))
+    print("Bot is running...")
+    app.run_polling()
