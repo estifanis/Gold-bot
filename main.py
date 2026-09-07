@@ -7,7 +7,7 @@ from threading import Thread
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-# Render Port ስህተት እንዳያሳይ ቀላል Web Server
+# Render Port ዌብ ሰርቨር ማዋቀር
 web_app = Flask('')
 
 @web_app.route('/')
@@ -61,7 +61,6 @@ async def signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("⚠️ የገበያ መረጃ ማግኘት አልተቻለም።")
         return
 
-    # የገበያ ስካልፒንግ ስልተ-ቀመር (Algorithmic simulation)
     action = random.choice(["BUY", "SELL"])
     
     if action == "BUY":
@@ -91,12 +90,9 @@ async def signal(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("🟢 **System Status:** Online & Fully Operational.\n⚡ **Connection:** Stable (Render Cloud)")
 
-if __name__ == '__main__':
-    # Flask Web Server በጀርባ ማስነሳት
-    Thread(target=run_flask, daemon=True).start()
-
-    # Telegram Bot ማስነሳት
+def main():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+    
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("check_gold", check_gold))
     app.add_handler(CommandHandler("signal", signal))
@@ -104,3 +100,7 @@ if __name__ == '__main__':
     
     print("Pro Gold Scalper Bot is running...")
     app.run_polling(drop_pending_updates=True)
+
+if __name__ == '__main__':
+    Thread(target=run_flask, daemon=True).start()
+    main()
