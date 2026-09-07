@@ -84,19 +84,20 @@ async def auto_loop(app):
             print(f"Error: {e}")
         await asyncio.sleep(15)
 
-if __name__ == '__main__':
-    app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
+ if __name__ == '__main__':
+    import asyncio
+    
+    app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("check_gold", check_gold))
-    app.add_handler(CommandHandler("status", status  
-        import asyncio
+    app.add_handler(CommandHandler("status", status))
 
-if __name__ == '__main__':
     try:
         loop = asyncio.get_event_loop()
     except RuntimeError:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        
-    app.run_polling()  # እዚህ ጋር እንደ ኮድህ አጻጻፍ (application.run_polling() ከሆነ እሱን አድርገው)
-                           
+
+    loop.create_task(auto_loop(app))
+    print("Bot is running...")
+    app.run_polling()
